@@ -13,7 +13,7 @@ defineEmits(['back']);
 <template>
   <header class="app-header">
     <button v-if="showBack" @click="$emit('back')" class="btn-back">←</button>
-    <h1>{{ title }}</h1>
+    <h1>{{ title }}</h1> 
     <div class="spacer"></div>
   </header>
 </template>
@@ -25,7 +25,8 @@ defineEmits(['back']);
   left: 0;
   right: 0;
   height: 56px;
-  background: #0b5cff;
+  background: #ff8da1;
+  border-radius: 0px 0px 10px 10px;
   color: white;
   display: flex;
   align-items: center;

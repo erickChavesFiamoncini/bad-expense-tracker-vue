@@ -1,5 +1,6 @@
 <template>
-    <RouterLink/>
+    <RouterView/>
+
     <div class="app">
         <div class="header">
             <h1>Controle de Gastos Rapido</h1>
