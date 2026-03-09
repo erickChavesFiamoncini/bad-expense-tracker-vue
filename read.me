@@ -1,0 +1,35 @@
+            <div class="panel">
+                <h2>Lista do dia</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Descricao</th>
+                            <th>Categoria</th>
+                            <th>Valor</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in filtered" :key="item.id">
+                            <td>{{ item.title }}</td>
+                            <td>{{ item.category }}</td>
+                            <td>{{ item.value }}</td>
+                            <td>
+                                <button class="small-btn" @click="removeExpense(item.id)">X</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="summary">
+                    Total do dia: {{ total }}
+                </div>
+            </div>
+
+
+function formatMoney(value) {
+  return Number(value).toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  });
+}

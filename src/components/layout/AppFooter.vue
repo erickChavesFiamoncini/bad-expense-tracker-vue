@@ -1,5 +1,25 @@
 <script setup>
+import { computed, ref } from 'vue';
 defineEmits(['back']);
+
+const expenses = ref([
+    { id: 1, title: 'Cafe', value: 6, category: 'alimentacao', icon: 'mdi mdi-food' },
+    { id: 2, title: 'Onibus', value: 4.5, category: 'transporte', icon: 'mdi mdi-train-car' },
+    { id: 3, title: 'Lanche', value: 12, category: 'alimentacao', icon: 'mdi mdi-food'},
+]);
+
+const title = ref('');
+const value = ref('');
+const category = ref('');
+const filter = ref('all');
+
+const filtered = computed(() => {
+    if (filter.value === 'all') {
+        return expenses.value;
+    }
+    return expenses.value.filter((item) => item.category === filter.value);
+});
+
 </script>
 
 <template>
@@ -10,31 +30,33 @@ defineEmits(['back']);
     <div class="lista">
         <ul class="lista1">
             <li>
-                <button>
+                <button @click="filter = 'outros'">
                 <span class="mdi mdi-dots-horizontal"></span>
                 </button>
             </li>
             <li>
-                <button>
+                <button @click="filter = 'transporte'">
                 <span class="mdi mdi-train-car"></span>
                 </button>
             </li>
         </ul>
 
-        <div>
+        <div>   
+            <RouterLink to="/records/new/edit" class="menu-item">
             <button>
                 <span class="mdi mdi-plus-circle" id="plus"></span>
             </button>
+            </RouterLink>
         </div>
 
         <ul class="lista2">
             <li>
-                <button>
+                <button @click="filter = 'alimentacao'">
                 <span class="mdi mdi-food"></span>
                 </button>
             </li>
             <li>
-                <button>
+                <button @click="filter = 'todos'">
                 <span class="mdi mdi-home"></span>
                 </button>
             </li>

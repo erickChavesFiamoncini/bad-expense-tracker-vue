@@ -30,7 +30,7 @@ defineEmits(['back']);
   color: white;
   display: flex;
   align-items: center;
-  padding: 0 16px;
+  text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 100;
 }
@@ -51,7 +51,4 @@ defineEmits(['back']);
   flex: 1;
 }
 
-.spacer {
-  width: 40px; /* Espaço para balancear o botão de voltar */
-}
 </style>
