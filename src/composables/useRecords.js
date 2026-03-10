@@ -1,7 +1,7 @@
 import { ref, computed } from "vue";
 
 // Estado global compartilhado entre componentes
-const records = ref([]);
+const records = ref(JSON.parse(localStorage.getItem("records") || "[]"));;
 
 // Nome da chave para LocalStorage
 const STORAGE_KEY = "records";
@@ -32,14 +32,14 @@ export function useRecords() {
 function addRecord(record) {
     const newRecord = {
       id: Date.now(),
-      category: 'outros',
+      category: record.category || 'outros',
       ...record,
       createdAt: new Date().toISOString(),
     };
     records.value.unshift(newRecord);
     saveToStorage();
     return newRecord;
-  }
+}
 
   function getRecord(id) {
     return records.value.find((r) => r.id === parseInt(id));

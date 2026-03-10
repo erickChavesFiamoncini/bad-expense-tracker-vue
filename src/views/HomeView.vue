@@ -1,24 +1,39 @@
 <script setup>
-import { RouterLink, useRouter } from 'vue-router';
+import { RouterLink } from 'vue-router';
+import { ref, computed } from 'vue';
 import AppHeader from '@/components/layout/AppHeader.vue';
 import AppFooter from '../components/layout/AppFooter.vue';
 import RecordCard from '@/components/records/RecordCard.vue';
 import { useRecords } from '@/composables/useRecords';
+import { watch } from 'vue';
 
 const { records } = useRecords();
+
+const currentFilter = ref('todos');
+
+const filteredRecords = computed(() => {
+    if (currentFilter.value === 'todos') {
+        return records.value;
+    }
+    return records.value.filter(record => record.category === currentFilter.value);
+});
+
+watch(currentFilter, (novoValor) => {
+    console.log("O filtro mudou para:", novoValor);
+});
 
 function formatDate(isoDate) {
     return new Date(isoDate).toLocaleDateString('pt-BR');
 }
-
 </script>
 
 <template>
     <AppHeader title="Controle de Gastos Rápido" />
     <div>
         <div class="page">
-            <div v-if="records.length > 0" class="list">
-                <RouterLink v-for="record in records" :key="record.id" :to="`/records/${record.id}`" class="link">
+            <div v-if="filteredRecords.length > 0" class="list">
+                <RouterLink v-for="record in filteredRecords" :key="record.id" :to="`/records/${record.id}`"
+                    class="link">
                     <RecordCard :id="record.id" :title="record.title" :price="record.price"
                         :date="formatDate(record.createdAt)" :category="record.category" />
                 </RouterLink>
@@ -31,14 +46,16 @@ function formatDate(isoDate) {
                     Criar primeiro registro
                 </RouterLink>
             </div>
-
-
         </div>
     </div>
-    <AppFooter />
+    <AppFooter :filter="currentFilter" @update:filter="currentFilter = $event" />
 </template>
 
 <style scoped>
+.page {
+    padding-bottom: 80px;
+}
+
 .list {
     display: flex;
     flex-direction: column;
