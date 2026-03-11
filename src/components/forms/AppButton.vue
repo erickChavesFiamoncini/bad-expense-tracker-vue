@@ -6,7 +6,7 @@ defineProps({
   },
   variant: {
     type: String,
-    default: 'primary', // primary, secondary, danger
+    default: 'primary', 
   },
   disabled: Boolean,
 });

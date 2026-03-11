@@ -13,12 +13,12 @@ const { getRecord, deleteRecord } = useRecords();
 const record = ref(null);
 
 const props = defineProps({
-  id: Number,
-  title: String,
-  duration: Number,
-  price: Number,
-  date: String,
-  category: String,
+    id: Number,
+    title: String,
+    duration: Number,
+    price: Number,
+    date: String,
+    category: String,
 });
 
 
@@ -41,29 +41,28 @@ function handleEdit() {
     router.push(`/records/${route.params.id}/edit`);
 }
 function handleDelete() {
-  // Verificamos se record.value existe antes de usar para evitar erros
-  if (!record.value) return;
+    // Verificamos se record.value existe antes de usar para evitar erros
+    if (!record.value) return;
 
-  Swal.fire({
-    title: 'Tem certeza?',
-    // Acesso correto aqui: record.value.title
-    text: `Deseja excluir o registro "${record.value.title}"?`,
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#ff8da1',
-    cancelButtonColor: '#aaa',
-    confirmButtonText: 'Sim, excluir!',
-    cancelButtonText: 'Cancelar'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      deleteRecord(route.params.id);
-      
-      // Feedback opcional antes de redirecionar
-      Swal.fire('Excluído!', 'O registro foi removido.', 'success').then(() => {
-        router.push('/'); // Redireciona para a home após o sucesso
-      });
-    }
-  });
+    Swal.fire({
+        title: 'Tem certeza?',
+        // Acesso correto aqui: record.value.title
+        text: `Deseja excluir o registro "${record.value.title}"?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ff8da1',
+        cancelButtonColor: '#aaa',
+        confirmButtonText: 'Sim, excluir!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            deleteRecord(route.params.id);
+
+            Swal.fire('Excluído!', 'O registro foi removido.', 'success').then(() => {
+                router.push('/');
+            });
+        }
+    });
 }
 
 function formatPrice() {
@@ -131,7 +130,7 @@ function formatPrice() {
 .info-item {
     display: flex;
     justify-content: space-between;
-    padding: 12px 0;
+    padding: 12px 0; // Redireciona para a home após o sucesso
     border-bottom: 1px solid #eee;
 }
 
@@ -140,6 +139,7 @@ function formatPrice() {
     color: #666;
 }
 
+// Redireciona para a home após o sucesso
 .value {
     color: #111;
 }
@@ -149,6 +149,8 @@ function formatPrice() {
     padding-top: 16px;
     border-top: 2px solid #f0f0f0;
 }
+
+// Redireciona para a home após o sucesso
 
 .notes h3 {
     font-size: 16px;

@@ -25,12 +25,32 @@ watch(currentFilter, (novoValor) => {
 function formatDate(isoDate) {
     return new Date(isoDate).toLocaleDateString('pt-BR');
 }
+
+const setCurrentFilter = (value) => {
+    console.log('oi')
+    console.log(value)
+    currentFilter.value = value
+}
+
+const labelsCategorias = {
+    todos: 'Todos os registros',
+    alimentacao: 'Alimentação',
+    lazer: 'Lazer',
+    transporte: 'Transporte',
+    saude: 'Saúde'
+    // Adicione as outras categorias aqui
+};
+
 </script>
 
 <template>
     <AppHeader title="Controle de Gastos Rápido" />
     <div>
         <div class="page">
+            <span class="filtroSelecionado">
+                {{ labelsCategorias[currentFilter] || currentFilter }}
+            </span>
+
             <div v-if="filteredRecords.length > 0" class="list">
                 <RouterLink v-for="record in filteredRecords" :key="record.id" :to="`/records/${record.id}`"
                     class="link">
@@ -48,7 +68,7 @@ function formatDate(isoDate) {
             </div>
         </div>
     </div>
-    <AppFooter :filter="currentFilter" @update:filter="currentFilter = $event" />
+    <AppFooter :filter="currentFilter" @changeFilter="setCurrentFilter" />
 </template>
 
 <style scoped>
@@ -108,5 +128,32 @@ function formatDate(isoDate) {
 
 .fab:active {
     transform: scale(0.9);
+}
+
+.filtroSelecionado {
+    /* Centralização */
+    display: block;
+    /* Faz o span ocupar a linha toda para aceitar text-align */
+    width: fit-content;
+    /* O fundo só ocupa o tamanho do texto */
+    margin: 0 auto 24px auto;
+    /* Centraliza horizontalmente e dá espaço para a lista abaixo */
+    text-align: center;
+
+    /* Estilo "Pill" (Pilulazinha) */
+    background-color: #f0f2f5;
+    color: #666;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    /* Espaçamento e Bordas */
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+
+    /* Suavidade */
+    transition: all 0.3s ease;
 }
 </style>

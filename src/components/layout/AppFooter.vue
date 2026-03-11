@@ -8,14 +8,14 @@ const props = defineProps({
     }
 });
 
-// A chave aqui é o nome do evento 'update:filter'
-const emit = defineEmits(['update:filter', 'back']);
+const emit = defineEmits(['changeFilter', 'back']);
 
 const setFilter = (value) => {
-    console.log("Clicou no botão, valor:", value); // Isso aparece no F12?
-    alert("Clicou no botão: " + value);            // Isso aparece na tela?
-    emit('update:filter', value);
+    console.log("Clicou no botão, valor:", value);
+    // alert("Clicou no botão: " + value);            
+    emit('changeFilter', value);
 };
+
 </script>
 
 <template>

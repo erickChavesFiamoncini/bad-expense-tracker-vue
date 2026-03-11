@@ -1,9 +1,7 @@
 import { ref, computed } from "vue";
 
-// Estado global compartilhado entre componentes
 const records = ref(JSON.parse(localStorage.getItem("records") || "[]"));;
 
-// Nome da chave para LocalStorage
 const STORAGE_KEY = "records";
 
 function loadFromStorage() {
@@ -17,7 +15,6 @@ function saveToStorage() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(records.value));
 }
 
-// Carrega dados ao importar o composable
 loadFromStorage();
 
 export function useRecords() {

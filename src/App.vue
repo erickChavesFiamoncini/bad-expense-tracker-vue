@@ -1,7 +1,7 @@
 <template>
 <AppHeader title="Controle de Gastos Rapido" />
     <RouterView/>
-<AppFooter/>
+<!-- <AppFooter/> -->
 </template>
 
 <script setup>
