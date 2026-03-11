@@ -37,8 +37,6 @@ const labelsCategorias = {
     alimentacao: 'Alimentação',
     lazer: 'Lazer',
     transporte: 'Transporte',
-    saude: 'Saúde'
-    // Adicione as outras categorias aqui
 };
 
 </script>
