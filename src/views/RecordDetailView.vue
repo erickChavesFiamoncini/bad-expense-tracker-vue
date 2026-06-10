@@ -130,7 +130,7 @@ function formatPrice() {
 .info-item {
     display: flex;
     justify-content: space-between;
-    padding: 12px 0; // Redireciona para a home após o sucesso
+    padding: 12px 0; 
     border-bottom: 1px solid #eee;
 }
 
@@ -139,7 +139,6 @@ function formatPrice() {
     color: #666;
 }
 
-// Redireciona para a home após o sucesso
 .value {
     color: #111;
 }
@@ -149,8 +148,6 @@ function formatPrice() {
     padding-top: 16px;
     border-top: 2px solid #f0f0f0;
 }
-
-// Redireciona para a home após o sucesso
 
 .notes h3 {
     font-size: 16px;
